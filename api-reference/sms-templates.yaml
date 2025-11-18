@@ -325,11 +325,13 @@ components:
             format: email
         updated_by:
           type: array
+          description: This field indicates the user who updated the template. When specified, the templates for which the updated_by user information matches that specified in this list will be returned.
           items:
             type: string
             format: email
         sort_params:
           type: array
+          description: This field indicates the sorting parameters for the search result and the sort order.
           items:
             type: object
             properties:
@@ -344,6 +346,7 @@ components:
                 enum: [ASCENDING, DESCENDING]
         template_ids:
           type: array
+          description: This field indicates the list of template IDs that must be fetched. When this value is specified, the template that matches the ID specified in this field will be returned.
           items:
             type: object
             properties:
