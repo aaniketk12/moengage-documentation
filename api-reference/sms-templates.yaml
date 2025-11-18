@@ -320,7 +320,7 @@ components:
             enum: [CUSTOM, PRE_BUILT]
         created_by:
           type: array
-          description: This field indicates the user who created the template. When specified, the templates for which the created_by user information matches that specified in this list will be returned. For example: ["user1@moengage.com", "user2@moengage.com"]
+          description: This field indicates the user who created the template. When specified, the templates for which the created_by user information matches that specified in this list will be returned.
           items:
             type: string
             format: email
