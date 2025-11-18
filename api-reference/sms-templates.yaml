@@ -135,7 +135,7 @@ paths:
       description: This API searches and retrieves a list of SMS templates, created in your MoEngage account, based on specified filter criteria.
       requestBody:
         required: true
-        description: Use search filters for finding SMS templates. All fields are optional. An empty body will fetch all templates.
+        description: Use search filters to find SMS templates. All fields are optional. An empty body will fetch all templates. You can send only template_ids if you want specific older versions of the SMS template. In other cases, you will receive the latest version of the template.
         content:
           application/json:
             schema:
