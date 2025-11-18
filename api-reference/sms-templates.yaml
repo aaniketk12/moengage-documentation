@@ -226,9 +226,10 @@ components:
           properties:
             message:
               type: string
-              description: The content of the SMS message.
+              description: This field contains the message of the template.
         meta_info:
           type: object
+          description: This field contains information about the template being created.
           required:
             - created_by
             - template_id
@@ -237,16 +238,16 @@ components:
           properties:
             created_by:
               type: string
-              description: Identifier for the creator of the template.
+              description: This field contains details about who created the template. You must provide this value.
             template_id:
               type: string
-              description: A unique ID for the template provided by you.
+              description: This field contains the ID for the template and is unique. You must provide this value.
             template_name:
               type: string
-              description: The name of the template.
+              description: This field contains the name of the template. You must provide this value, and it will be used for identifying the template.
             template_version:
               type: string
-              description: The version of the template.
+              description: This field contains the version of the template. You must provide this value, and it will be used for tracking the template's version.
 
     UpdateSmsTemplateRequest:
       type: object
