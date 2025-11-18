@@ -27,7 +27,7 @@ paths:
       tags:
         - SMS Templates
       summary: Create SMS Template
-      description: This creates an SMS template in MoEngage. It helps you upload templates created outside the MoEngage ecosystem to MoEngage and use them for campaign creation.
+      description: This API creates an SMS template in MoEngage. It helps you upload templates created outside the MoEngage ecosystem to MoEngage and use them for campaign creation.
       requestBody:
         required: true
         description: The details of the SMS template to be created.
@@ -220,6 +220,7 @@ components:
       properties:
         basic_details:
           type: object
+          description: This field contains the basic details of the SMS template.
           required:
             - message
           properties:
