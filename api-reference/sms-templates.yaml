@@ -27,7 +27,7 @@ paths:
       tags:
         - SMS Templates
       summary: Create SMS Template
-      description: Creates a new SMS template in MoEngage. This allows you to upload templates created outside the MoEngage ecosystem and use them for campaign creation.
+      description: This creates an SMS template in MoEngage. It helps you upload templates created outside the MoEngage ecosystem to MoEngage and use them for campaign creation.
       requestBody:
         required: true
         description: The details of the SMS template to be created.
