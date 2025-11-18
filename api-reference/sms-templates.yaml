@@ -45,7 +45,7 @@ paths:
                 template_version: "1"
       responses:
         '200':
-          description: Template created successfully.
+          description: Success. This response is returned when the template is created successfully.
           content:
             application/json:
               schema:
@@ -54,28 +54,40 @@ paths:
                   external_template_id:
                     type: string
                     format: uuid
-                    description: The unique ID assigned to the newly created template by MoEngage.
+                    description: This field contains the unique ID assigned to the newly created template by MoEngage.
                     example: "d05a44f0-a7cf-471a-bcb6-63054800a367"
         '400':
-          description: Bad Request. The request is invalid due to missing fields, duplicate `template_id` and `template_version`, or exceeding template limits.
+          description: Bad Request. This response is returned when the request is invalid due to missing fields, duplicate `template_id` and `template_version`, or exceeding template limits.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
         '401':
-          description: Authentication Failure.
+          description: Authentication Failure. This response is returned when the authorization parameters are missing in the HTTP Auth Header.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
         '403':
-          description: Forbidden. Invalid App ID or Secret Key.
+          description: Unauthorized Access. This response is returned when the authorization fails due to incorrect values for the APP KEY/ HTTP Auth Header.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '415':
+          description: Unsupported File Type. This response is returned when the header Content-Type is not provided/is not supported.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
         '429':
-          description: Rate limit breached (100 RPM) or template quota exceeded.
+          description: Rate Limit Breach. This response is returned when the number of requests per minute exceeds the rate limit (100 RPM) or the number of templates exceeds the allowed quota per channel.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '5XX':
+          description: Internal Server Error. This response is returned when the system runs into an unexpected error.
           content:
             application/json:
               schema:
