@@ -132,7 +132,7 @@ paths:
       tags:
         - SMS Templates
       summary: Search SMS Templates
-      description: Searches and retrieves a list of SMS templates based on specified filter criteria.
+      description: This API searches and retrieves a list of SMS templates, created in your MoEngage account, based on specified filter criteria.
       requestBody:
         required: true
         description: Search filters for finding SMS templates. An empty body will fetch all templates.
