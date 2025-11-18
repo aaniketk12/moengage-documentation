@@ -314,7 +314,6 @@ components:
         template_type:
           type: array
           description: This field indicates whether the template is a custom one or a pre-built one. When specified, templates whose template type matches the one specified in this list will be returned.
-          description: 
           items:
             type: string
             enum: [CUSTOM, PRE_BUILT]
