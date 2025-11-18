@@ -295,23 +295,25 @@ components:
       properties:
         page:
           type: integer
-          description: The page number of the results to fetch.
+          description: This field contains the index of the pages to be returned in the search result
           default: 1
         entries:
           type: integer
-          description: The number of templates to return per page.
+          description: This field contains the number of templates to return per page.
           maximum: 15
           default: 15
         template_name:
           type: string
-          description: The name of the template to search for (partial search supported).
+          description: This field indicates the name of the template. When this value is specified, the template that matches the name specified in this field will be returned (partial search is supported).
         template_source:
           type: array
+          description: This field indicates the template source that created the template. When specified, templates whose source matches the one specified in this list will be returned.
           items:
             type: string
             enum: [API, MOENGAGE]
         template_type:
           type: array
+          description: 
           items:
             type: string
             enum: [CUSTOM, PRE_BUILT]
