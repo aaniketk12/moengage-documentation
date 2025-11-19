@@ -372,35 +372,38 @@ components:
   schemas:
     ErrorResponse:
       type: object
+      description: Standard error response format.
       properties:
         error:
           type: object
           properties:
             code:
               type: string
-              example: "400 Bad Request"
+              description: The HTTP status code and error type.
+              example: "4xx/5xx Status Code"
             message:
               type: string
-              example: "Duplicate - template_id and template_version"
+              description: A description of the error.
+              example: "Brief description of the error."
             details:
               type: array
               items:
                 type: object
                 properties:
-                  code: { type: string, example: "InvalidValue" }
-                  target: { type: string, example: "Duplicate - template_id and template_version" }
-                  message: { type: string, example: "template_id:BasicTemplate1 template_version:1 is already present." }
+                  code: { type: string, example: "ErrorCode" }
+                  target: { type: string, example: "Field Name" }
+                  message: { type: string, example: "Error description for this field." }
             request_id:
               type: string
-              example: "cLCcgLQj"
+              example: "Unique Request ID"
         title:
           type: string
           description: An alternative error title format.
-          example: "Authentication required"
+          example: "Error Title"
         description:
           type: string
           description: An alternative error description format.
-          example: "MOE-APPKEY missing in Authentication Header"
+          example: "Error Description"
 
     CreateSmsTemplateRequest:
       type: object
