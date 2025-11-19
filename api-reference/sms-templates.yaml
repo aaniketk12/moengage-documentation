@@ -27,7 +27,14 @@ paths:
       tags:
         - SMS Templates
       summary: Create SMS Template
-      description: This API creates an SMS template in MoEngage. It helps you upload templates created outside the MoEngage ecosystem to MoEngage and use them for campaign creation.
+      description: |
+        The Create SMS Template API can be used to create an SMS template in MoEngage.
+        This API helps you upload templates created outside the MoEngage ecosystem to
+        MoEngage and use them for campaign creation.
+      x-mint:
+        content: |
+          ### Rate Limit & Quota
+          The rate limit is **100 RPM** (Requests Per Minute). You can upload a maximum of **100 templates** per channel.
       requestBody:
         required: true
         description: The details of the SMS template to be created.
@@ -45,7 +52,7 @@ paths:
                 template_version: "1"
       responses:
         '200':
-          description: Success. This response is returned when the template is created successfully.
+          description: Template created successfully. This response is returned when the request is processed successfully.
           content:
             application/json:
               schema:
@@ -54,16 +61,18 @@ paths:
                   external_template_id:
                     type: string
                     format: uuid
-                    description: This field contains the unique ID assigned to the newly created template by MoEngage.
+                    description: The unique ID assigned to the newly created template by MoEngage.
                     example: "d05a44f0-a7cf-471a-bcb6-63054800a367"
         '400':
-          description: Bad Request. This response is returned when the request is invalid due to missing fields, duplicate `template_id` and `template_version`, or exceeding template limits.
+          description: |
+            Bad Request. This response is returned when the required parameters are missing
+            from the request, when the provided parameters are invalid, or when a template already exists with the same version, name, or id.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
         '401':
-          description: Authentication Failure. This response is returned when the authorization parameters are missing in the HTTP Auth Header.
+          description: Authorization Failure. This response is returned when the authorization parameters are missing in the HTTP Auth Header.
           content:
             application/json:
               schema:
@@ -81,7 +90,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
         '429':
-          description: Rate Limit Breach. This response is returned when the number of requests per minute exceeds the rate limit (100 RPM) or the number of templates exceeds the allowed quota per channel.
+          description: Rate Limit Breach. This response is returned when the number of requests per minute has exceeded the rate limit or the number of templates has exceeded the allowed quota per channel.
           content:
             application/json:
               schema:
@@ -96,7 +105,13 @@ paths:
       tags:
         - SMS Templates
       summary: Update SMS Template
-      description: This API updates an SMS template by specifying its external template ID. You can specify in the request whether the updated version of the template can be used in active campaigns.
+      description: |
+        This API can be used to update an SMS template by specifying its `external_template_id`.
+        You can specify whether the updated version of the template can be used in active campaigns in the request.
+      x-mint:
+        content: |
+          ### Rate Limit
+          The rate limit is **100 RPM** (Requests Per Minute).
       requestBody:
         required: true
         description: The updated details for the SMS template.
@@ -106,16 +121,16 @@ paths:
               $ref: '#/components/schemas/UpdateSmsTemplateRequest'
             example:
               external_template_id: "d05a44f0-a7cf-471a-bcb6-63054800a367"
-              update_campaigns": false
+              update_campaigns: false
               basic_details:
                 message: "Hi {{UserAttribute['first_name']}}, your order has been delivered!"
               meta_info:
                 template_name: "Shipping Update Template V2"
-                updated_by": "jane.doe@example.com"
+                updated_by: "jane.doe@example.com"
                 template_version: "2"
       responses:
         '200':
-          description: Template updated successfully.
+          description: Template updated successfully. This response is returned when the request is processed successfully.
           content:
             application/json:
               schema:
@@ -124,16 +139,16 @@ paths:
                   external_template_id:
                     type: string
                     format: uuid
-                    description: The unique ID of the updated template.
+                    description: This field contains the unique template id corresponding to a successful template updation request.
                     example: "eca024b7-a8ea-4f31-9154-5b80c85d18a9"
         '400':
-          description: Bad Request. Invalid `external_template_id` or other request data validation errors.
+          description: This response is returned when the required parameters are missing from the request or when the provided parameters are invalid.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
         '5XX':
-          description: Internal Server Error.
+          description: Internal Server Error. This response is returned when the system runs into an unexpected error.
           content:
             application/json:
               schema:
@@ -144,10 +159,18 @@ paths:
       tags:
         - SMS Templates
       summary: Search SMS Templates
-      description: This API searches and retrieves a list of SMS templates, created in your MoEngage account, based on specified filter criteria.
+      description: The Search SMS Template API can be used to look up the SMS templates created in your MoEngage account based on specified filter criteria.
+      x-mint:
+        content: |
+          <Note>
+            We are introducing **mandatory pagination**, effective November 15, 2025. All calls to this API must include `page` and `entries` parameters. Requests submitted without them after the effective date will result in an error.
+            
+            ### Rate Limit
+            The rate limit is **100 RPM** (Requests Per Minute).
+          </Note>
       requestBody:
         required: true
-        description: Use search filters to find SMS templates.
+        description: Search filters for finding SMS templates.
         content:
           application/json:
             schema:
@@ -160,25 +183,27 @@ paths:
                 - last_modified_date: "DESCENDING"
       responses:
         '200':
-          description: Search successful. Returns a list of templates.
+          description: Search successful. This response is returned when the request is processed successfully.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SearchSmsTemplateResponse'
         '400':
-          description: Bad Request. Invalid field values in the search criteria.
+          description: |
+            Bad Request. This response is returned when the required parameters are missing
+            from the request or when the provided parameters are invalid.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
         '429':
-          description: Rate limit breached (100 RPM).
+          description: Rate Limit Breach. This response is returned when the number of requests per minute has exceeded the rate limit.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
         '5XX':
-          description: Internal Server Error.
+          description: Internal Server Error. This response is returned when the system runs into an unexpected error.
           content:
             application/json:
               schema:
@@ -189,7 +214,7 @@ components:
     basicAuth:
       type: http
       scheme: basic
-      description: Basic Authentication using Workspace ID as username and the 'Campaign report/Business events/Custom templates' API key as the password.
+      description: Basic Authentication using **Workspace ID** as username and the 'Campaign report/Business events/Custom templates' **API key** as the password.
 
   schemas:
     ErrorResponse:
@@ -197,32 +222,41 @@ components:
       properties:
         error:
           type: object
+          description: This field contains the reason for the request's failure.
           properties:
             code:
               type: string
+              description: The error code that provides a brief explanation of the error (e.g., "400 Bad Request").
               example: "400 Bad Request"
             message:
               type: string
+              description: This field describes why the request has failed.
               example: "Duplicate - template_id and template_version"
             details:
               type: array
+              description: A list of error detail objects.
               items:
                 type: object
                 properties:
                   code: { type: string, example: "InvalidValue" }
-                  target: { type: string, example: "Duplicate - template_id and template_version" }
+                  target: { type: string, description: "Denotes the field causing the issue or a brief description of the error message.", example: "Duplicate - template_id and template_version" }
                   message: { type: string, example: "template_id:BasicTemplate1 template_version:1 is already present." }
             request_id:
               type: string
+              description: The unique ID pertaining to the request.
               example: "cLCcgLQj"
         title:
           type: string
-          description: An alternative error title format.
+          description: An alternative error title format (used for Auth failure).
           example: "Authentication required"
         description:
           type: string
           description: An alternative error description format.
           example: "MOE-APPKEY missing in Authentication Header"
+        code:
+          type: string
+          description: The main error code (alternative format).
+          example: "KMxkunyz"
 
     CreateSmsTemplateRequest:
       type: object
@@ -238,10 +272,12 @@ components:
           properties:
             message:
               type: string
-              description: This field contains the message of the template.
+              description: The content of the SMS message. (Mandatory String)
         meta_info:
           type: object
-          description: This field contains information about the template being created.
+          description: |
+            This field contains information about the template being created, such as the name, version,
+            and id of the template and the creator's details. All fields are mandatory Strings.
           required:
             - created_by
             - template_id
@@ -250,16 +286,16 @@ components:
           properties:
             created_by:
               type: string
-              description: This field contains details about who created the template. You must provide this value.
+              description: Details about who created the template (provided by you).
             template_id:
               type: string
-              description: This field contains the ID for the template and is unique. You must provide this value.
+              description: A unique ID for the template (provided by you).
             template_name:
               type: string
-              description: This field contains the name of the template. You must provide this value, and it will be used for identifying the template.
+              description: The name of the template, used for identifying the template (provided by you).
             template_version:
               type: string
-              description: This field contains the version of the template. You must provide this value, and it will be used for tracking the template's version.
+              description: The version of the template, used for tracking (provided by you).
 
     UpdateSmsTemplateRequest:
       type: object
@@ -271,75 +307,80 @@ components:
         external_template_id:
           type: string
           format: uuid
-          description: This field contains the unique identifier that is generated by MoEngage during the template creation.
+          description: The unique ID generated by MoEngage during template creation. (Mandatory)
         update_campaigns:
           type: boolean
           default: false
-          description: If true, this field contains a flag used to update all active campaigns currently using the template being updated to the newer version (being updated in this request).
+          description: |
+            If true, updates all active campaigns using this template to the newer version
+            (that is being updated in this request). The default value is false. (Optional)
         basic_details:
           type: object
-          description: This field contains the basic details of the SMS template.
+          description: This field contains the updated basic details of the SMS template.
           required:
             - message
           properties:
             message:
               type: string
-              description: This field contains the updated content of the template.
+              description: The updated content of the SMS message. (Mandatory String)
         meta_info:
           type: object
-          description: This field contains information about the template being created.
+          description: |
+            This field contains information about the template being updated.
+            Fields `template_name` and `updated_by` are mandatory. `template_version` is optional.
           required:
             - template_name
             - updated_by
           properties:
             template_name:
               type: string
-              description: This field contains the name of the template being updated.
+              description: The name of the template being updated.
             updated_by:
               type: string
               format: email
-              description: This field contains the email ID of the person updating the template.
+              description: The email ID of the person updating the template.
             template_version:
               type: string
-              description: This field contains the version of the template (optional).
+              description: Optional new version for the template.
 
     SearchSmsTemplateRequest:
       type: object
-      description: All fields are optional. An empty body will fetch all templates. You can send only template_ids if you want specific older versions of the SMS template. In other cases, you will receive the latest version of the template.
+      description: All fields are optional. An empty request body will fetch all templates.
       properties:
         page:
           type: integer
-          description: This field contains the index of the pages to be returned in the search result
+          description: The page number of the results to fetch.
           default: 1
         entries:
           type: integer
-          description: This field contains the number of templates to return per page.
+          description: The number of templates to return per page.
           maximum: 15
           default: 15
         template_name:
           type: string
-          description: This field indicates the name of the template. When this value is specified, the template that matches the name specified in this field will be returned (partial search is supported).
+          description: The name of the template to search for (When specified, the template that matches the name specified in this field will be returned).
         template_source:
           type: array
-          description: This field indicates the template source that created the template. When specified, templates whose source matches the one specified in this list will be returned.
+          description: |
+            This field indicates the template source that created the template. Allowed values: [API, MOENGAGE].
           items:
             type: string
             enum: [API, MOENGAGE]
         template_type:
           type: array
-          description: This field indicates whether the template is a custom one or a pre-built one. When specified, templates whose template type matches the one specified in this list will be returned.
+          description: This field indicates whether the template is a custom one or a pre-built one.
           items:
             type: string
             enum: [CUSTOM, PRE_BUILT]
         created_by:
           type: array
-          description: This field indicates the user who created the template. When specified, the templates for which the created_by user information matches that specified in this list will be returned.
+          description: This field indicates the user who created the template (e.g., ["user1@moengage.com"]).
           items:
             type: string
             format: email
         updated_by:
           type: array
-          description: This field indicates the user who updated the template. When specified, the templates for which the updated_by user information matches that specified in this list will be returned.
+          description: This field indicates the user who updated the template (e.g., ["user1@moengage.com"]).
           items:
             type: string
             format: email
@@ -360,7 +401,9 @@ components:
                 enum: [ASCENDING, DESCENDING]
         template_ids:
           type: array
-          description: This field indicates the list of template IDs that must be fetched. When this value is specified, the template that matches the ID specified in this field will be returned.
+          description: |
+            This field indicates the list of the template IDs that must be fetched. Can include specific versions.
+            Example: [{"external_template_id": "e1c95cb8-4f15-4f22-ae73-e9f47c9925c8", "version": 1}]
           items:
             type: object
             properties:
@@ -383,6 +426,7 @@ components:
           properties:
             message:
               type: string
+              description: The SMS content sent to the user.
         meta_info:
           type: object
           properties:
@@ -391,7 +435,7 @@ components:
             template_version: { type: string }
             created_by: { type: string }
             channel: { type: string, example: "SMS" }
-            template_type: { type: string, enum: [CUSTOM, PRE_BUILT] }
+            template_type: { type: string, enum: [CUSTOM, PRE_BUILT], description: "Indicates whether the template is a custom or pre-built one." }
         created_by:
           type: string
         created_at:
@@ -408,5 +452,18 @@ components:
       properties:
         data:
           type: array
+          description: This field contains the list of SMS templates that satisfy the search criteria.
           items:
             $ref: '#/components/schemas/SmsTemplate'
+        title:
+          type: string
+          description: A brief description of the error (present on failure).
+        description:
+          type: string
+          description: A detailed description of the error (present on failure).
+        code:
+          type: string
+          description: The error code (present on failure).
+        message:
+          type: string
+          description: The error message (present on failure).
