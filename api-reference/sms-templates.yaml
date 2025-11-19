@@ -198,7 +198,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/InternalServerError'
               examples:
                 server_error:
                   summary: Internal Server Error
@@ -267,7 +267,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/InternalServerError'
               examples:
                 server_error:
                   summary: Internal Server Error
@@ -354,7 +354,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/InternalServerError'
               examples:
                 server_error:
                   summary: Internal Server Error
@@ -370,9 +370,20 @@ components:
       description: Basic Authentication using Workspace ID as username and the 'Campaign report/Business events/Custom templates' API key as the password.
 
   schemas:
+    InternalServerError:
+      type: object
+      description: Schema for 500 Internal Server Error.
+      properties:
+        title:
+          type: string
+          example: "Internal Server Error"
+        message:
+          type: string
+          example: "An unexpected error was encountered while processing this request. Please contact MoEngage Team"
+
     ErrorResponse:
       type: object
-      description: Standard error response format.
+      description: Standard error response format for 4xx errors.
       properties:
         error:
           type: object
@@ -380,7 +391,7 @@ components:
             code:
               type: string
               description: The HTTP status code and error type.
-              example: "4xx/5xx Status Code"
+              example: "4xx Status Code"
             message:
               type: string
               description: A description of the error.
