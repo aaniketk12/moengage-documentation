@@ -71,36 +71,85 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                DuplicateTemplate:
+                  summary: Template ID/Version Conflict
+                  value:
+                    error:
+                      code: "400 Bad Request"
+                      message: "Duplicate - template_id and template_version"
+                      details:
+                        - code: "InvalidValue"
+                          target: "Duplicate - template_id and template_version"
+                          message: "template_id:basicios12 template_version:12 is already present."
+                      request_id: "cLCcgLQj"
         '401':
           description: Authorization Failure. This response is returned when the authorization parameters are missing in the HTTP Auth Header.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                MissingAuthHeader:
+                  summary: Missing Authorization Header
+                  value:
+                    title: "Authentication required"
+                    description: "MOE-APPKEY missing in Authentication Header"
         '403':
           description: Unauthorized Access. This response is returned when the authorization fails due to incorrect values for the APP KEY/ HTTP Auth Header.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                InvalidAppSecret:
+                  summary: Invalid App Secret Key
+                  value:
+                    error:
+                      code: "403 Forbidden"
+                      message: "Authentication required"
+                      details:
+                        - code: "InvalidValue"
+                          target: "APP_SECRET_KEY"
+                          message: "Invalid APP_SECRET_KEY is provided."
+                      request_id: "oZEMYhqA"
         '415':
           description: Unsupported File Type. This response is returned when the header Content-Type is not provided/is not supported.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                UnsupportedMediaType:
+                  summary: Unsupported Content-Type
+                  value:
+                    title: "Unsupported media type"
+                    description: "Content type is not supported"
         '429':
           description: Rate Limit Breach. This response is returned when the number of requests per minute has exceeded the rate limit or the number of templates has exceeded the allowed quota per channel.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                RateLimitBreach:
+                  summary: Rate Limit Exceeded
+                  value:
+                    title: "Request limit reached"
+                    description: "This API call has exceeded the rate limit"
+                    code: "KMxkunyz"
         '5XX':
           description: Internal Server Error. This response is returned when the system runs into an unexpected error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                InternalServerError:
+                  summary: Unexpected System Error
+                  value:
+                    title: "Internal Server Error"
+                    message: "An unexpected error was encountered while processing this request. Please contact MoEngage Team"
     put:
       tags:
         - SMS Templates
@@ -368,7 +417,7 @@ components:
             enum: [API, MOENGAGE]
         template_type:
           type: array
-          description: This field indicates whether the template is a custom one or a pre-built one.
+          description: This field indicates whether the template is a custom one or a pre-built one. Allowed values: [CUSTOM, PRE_BUILT].
           items:
             type: string
             enum: [CUSTOM, PRE_BUILT]
