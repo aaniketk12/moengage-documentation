@@ -380,7 +380,7 @@ components:
             enum: [API, MOENGAGE]
         template_type:
           type: array
-          description: This field indicates whether the template is a custom one or a pre-built one. Allowed values: [CUSTOM, PRE_BUILT].
+          description: This field indicates whether the template is a custom one or a pre-built one.
           items:
             type: string
             enum: [CUSTOM, PRE_BUILT]
