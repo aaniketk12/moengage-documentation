@@ -38,12 +38,12 @@ paths:
             example:
               basic_details:
                 payload: "<html><body><h1>Your HTML Content Here</h1></body></html>"
-                template_type": "BANNER"
+                template_type: "BANNER"
               meta_info:
-                created_by": "testuser@moengage.com"
-                template_id": "123123123"
-                template_name": "Test"
-                template_version": "1"
+                created_by: "testuser@moengage.com"
+                template_id: "123123123"
+                template_name: "Test"
+                template_version: "1"
       responses:
         '200':
           description: Template created successfully.
@@ -58,29 +58,86 @@ paths:
                     description: The unique ID assigned to the newly created template by MoEngage.
                     example: "d05a44f0-a7cf-471a-bcb6-63054800a367"
         '400':
-          description: Bad Request. The request is invalid due to missing fields, duplicate `template_id` and `template_version`, or other validation errors.
+          description: Bad Request. The request is invalid due to missing fields, duplicate `template_id`, or validation errors.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/StandardErrorResponse'
+              examples:
+                DuplicateTemplate:
+                  summary: Duplicate Template ID
+                  value:
+                    error:
+                      code: "400 Bad Request"
+                      message: "Duplicate - template_id and template_version"
+                      details:
+                        - code: "InvalidValue"
+                          target: "Duplicate - template_id and template_version"
+                          message: "template_id:13343440 template_version:1 is already present."
+                      request_id: "xZLmJvUi"
+                TemplateLimitExceeded:
+                  summary: Template Limit Exceeded
+                  value:
+                    error:
+                      code: "400 Bad Request"
+                      message: "Maximum Template limit exceeded"
+                      details:
+                        - code: "NotSupported"
+                          target: "Maximum Template limit exceeded"
+                          message: "You have already created maximum allowed template allowed for client"
+                      request_id: "eLeZXIlW"
         '401':
           description: Authentication Failure.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '429':
-          description: Rate limit breached (100 RPM) or template quota exceeded.
+                $ref: '#/components/schemas/AuthErrorResponse'
+              examples:
+                AuthRequired:
+                  summary: Authentication Required
+                  value:
+                    title: "Authentication required"
+                    description: "MOE-APPKEY missing in Authentication Header"
+        '415':
+          description: Unsupported Media Type.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/AuthErrorResponse'
+              examples:
+                UnsupportedMedia:
+                  summary: Unsupported Content Type
+                  value:
+                    title: "Unsupported media type"
+                    description: "Content type is not supported"
+        '429':
+          description: Rate limit breached (100 RPM).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitErrorResponse'
+              examples:
+                RateLimitBreach:
+                  summary: Rate Limit Breached
+                  value:
+                    response_id: "OUUkHvcn"
+                    type: "custom_template"
+                    error:
+                      code: "Too Many Requests"
+                      message: "API rate limit breached. Current limit: n/m mins"
         '5XX':
           description: Internal Server Error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ServerErrorResponse'
+              examples:
+                InternalError:
+                  summary: Unexpected Error
+                  value:
+                    title: "Internal Server Error"
+                    message: "An unexpected error was encountered while processing this request. Please contact MoEngage Team"
+
     put:
       tags:
         - OSM Templates
@@ -100,9 +157,9 @@ paths:
                 payload: "<html><body><h1>Updated HTML Content</h1></body></html>"
               meta_info:
                 template_name: "AD template updated API 1"
-                template_id": "133434477456"
-                template_version": "2"
-                updated_by": "testuser@moengage.com"
+                template_id: "133434477456"
+                template_version: "2"
+                updated_by: "testuser@moengage.com"
       responses:
         '200':
           description: Template updated successfully.
@@ -121,13 +178,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/StandardErrorResponse'
+              examples:
+                MissingValue:
+                  summary: Missing External Template ID
+                  value:
+                    error:
+                      code: "400 Bad Request"
+                      message: "Validation failed because of invalid request data"
+                      details:
+                        - code: "MissingValue"
+                          target: "external_template_id"
+                          message: "external_template_id value is required but value is passed empty."
+                      request_id: "cTRlnJaG"
         '5XX':
           description: Internal Server Error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ServerErrorResponse'
+              examples:
+                InternalError:
+                  summary: Unexpected Error
+                  value:
+                    title: "Internal Server Error"
+                    message: "An unexpected error was encountered while processing this request. Please contact MoEngage Team"
 
   /custom-templates/osm/search:
     post:
@@ -145,8 +220,8 @@ paths:
             example:
               page: 1
               entries: 10
-              template_source": ["API"]
-              sort_params":
+              template_source: ["API"]
+              sort_params:
                 - last_modified_date: "DESCENDING"
       responses:
         '200':
@@ -160,19 +235,46 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/StandardErrorResponse'
+              examples:
+                MissingTemplateID:
+                  summary: Missing Template ID or Version
+                  value:
+                    error:
+                      code: "400 Bad Request"
+                      message: "Validation failed because of invalid request data"
+                      details:
+                        - code: "MissingValue"
+                          target: "external_template_ids"
+                          message: "external_template_id or version is missing in external_template_ids."
+                      request_id: "npmQrbNE"
         '429':
           description: Rate limit breached (100 RPM).
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/RateLimitErrorResponse'
+              examples:
+                RateLimitBreach:
+                  summary: Rate Limit Breached
+                  value:
+                    response_id: "OUUkHvcn"
+                    type: "custom_template"
+                    error:
+                      code: "Too Many Requests"
+                      message: "API rate limit breached. Current limit: n/m mins"
         '5XX':
           description: Internal Server Error.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/ServerErrorResponse'
+              examples:
+                InternalError:
+                  summary: Unexpected Error
+                  value:
+                    title: "Internal Server Error"
+                    message: "An unexpected error was encountered while processing this request. Please contact MoEngage Team"
 
 components:
   securitySchemes:
@@ -182,7 +284,8 @@ components:
       description: Basic Authentication using Workspace ID as username and the 'Campaign report/Business events/Custom templates' API key as the password.
 
   schemas:
-    ErrorResponse:
+    # Error Schemas created based on HTML Reference
+    StandardErrorResponse:
       type: object
       properties:
         error:
@@ -190,29 +293,56 @@ components:
           properties:
             code:
               type: string
-              example: "400 Bad Request"
+              description: Brief explanation of the error (e.g., "400 Bad Request").
             message:
               type: string
-              example: "Duplicate - template_id and template_version"
+              description: Description of why the request failed.
             details:
               type: array
               items:
                 type: object
                 properties:
                   code: { type: string, example: "InvalidValue" }
-                  target: { type: string, example: "Duplicate - template_id and template_version" }
-                  message: { type: string, example: "template_id:BasicTemplate1 template_version:1 is already present." }
+                  target: { type: string, description: Denotes the field causing the issue. }
+                  message: { type: string, description: Descriptive Error Message. }
             request_id:
               type: string
-              example: "cLCcgLQj"
+              description: Unique identifier for the request.
+
+    AuthErrorResponse:
+      type: object
+      properties:
         title:
           type: string
-          description: An alternative error title format.
-          example: "Authentication required"
+          description: Error title (e.g., "Authentication required", "Unsupported media type").
         description:
           type: string
-          description: An alternative error description format.
-          example: "MOE-APPKEY missing in Authentication Header"
+          description: Detailed description of the error.
+
+    RateLimitErrorResponse:
+      type: object
+      properties:
+        response_id:
+          type: string
+          description: Unique identifier for the response.
+        type:
+          type: string
+          description: Type of template involved (e.g., "custom_template").
+        error:
+          type: object
+          properties:
+            code: { type: string, example: "Too Many Requests" }
+            message: { type: string, example: "API rate limit breached." }
+
+    ServerErrorResponse:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "Internal Server Error"
+        message:
+          type: string
+          description: Description of the unexpected error.
 
     CreateOsmTemplateRequest:
       type: object
