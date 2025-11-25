@@ -407,14 +407,6 @@ components:
             request_id:
               type: string
               example: "Unique Request ID"
-        title:
-          type: string
-          description: An alternative error title format.
-          example: "Error Title"
-        description:
-          type: string
-          description: An alternative error description format.
-          example: "Error Description"
 
     CreateSmsTemplateRequest:
       type: object
