@@ -387,6 +387,7 @@ components:
       properties:
         error:
           type: object
+          description: This field contains the reason for the request's failure.
           properties:
             code:
               type: string
@@ -398,6 +399,7 @@ components:
               example: "Brief description of the error."
             details:
               type: array
+              description: This is a List of the error details objects. Each object contains the following information.
               items:
                 type: object
                 properties:
@@ -406,6 +408,7 @@ components:
                   message: { type: string, example: "Error description for this field." }
             request_id:
               type: string
+              description: This field contains the unique id pertaining to the request.
               example: "Unique Request ID"
 
     CreateSmsTemplateRequest:
