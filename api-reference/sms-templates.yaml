@@ -28,6 +28,17 @@ paths:
         - SMS Templates
       summary: Create SMS Template
       description: This API creates an SMS template in MoEngage. It helps you upload templates created outside the MoEngage ecosystem to MoEngage and use them for campaign creation.
+      x-mint:
+        content: |
+          # Rate Limit
+          The rate limit is **100 RPM**. You can upload a maximum of **100 templates per channel**.
+
+          # FAQs
+          <AccordionGroup>
+            <Accordion title="Can I create multiple templates with the same name?">
+              Yes, you can create multiple templates with the same name, provided they have different versions.
+            </Accordion>
+          </AccordionGroup>
       requestBody:
         required: true
         description: The details of the SMS template to be created.
