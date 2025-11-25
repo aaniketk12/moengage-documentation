@@ -297,6 +297,21 @@ paths:
         - SMS Templates
       summary: Search SMS Templates
       description: This API searches and retrieves a list of SMS templates, created in your MoEngage account, based on specified filter criteria.
+      x-mint:
+        content: |
+          <Note>
+          **Mandatory Pagination Update**
+          
+          We are introducing mandatory pagination, effective **November 15, 2025**, all calls to this API must include the following two parameters:
+          * `page`: The page number of the results you wish to fetch.
+          * `entries`: The number of templates to return per page, with a maximum value of **15**.
+          
+          Please update all integrations to include these parameters. API requests submitted without them after the effective date will result in an error and fail to execute.
+          </Note>
+
+          ### Rate Limit
+          The rate limit is **100 RPM**.
+
       requestBody:
         required: true
         description: Use search filters to find SMS templates.
