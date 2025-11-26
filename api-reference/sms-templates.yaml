@@ -220,14 +220,6 @@ paths:
                   value:
                     title: "Internal Server Error"
                     message: "An unexpected error was encountered while processing this request. Please contact MoEngage Team"
-    x-mint:
-        content: |
-          ### FAQs
-          <AccordionGroup>
-            <Accordion title="Can I create multiple templates with the same name?">
-              Yes, you can create multiple templates with the same name, provided they have different versions.
-            </Accordion>
-          </AccordionGroup>
 
     put:
       tags:
