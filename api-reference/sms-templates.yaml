@@ -54,6 +54,10 @@ paths:
                 template_id: "shipping_update_v1"
                 template_name: "Shipping Update Template"
                 template_version: "1"
+      x-mint:
+        content: |
+          ### Rate Limit
+          The rate limit is **100 RPM**. You can upload a maximum of **100 templates per channel**.
       responses:
         '200':
           description: Success. This response is returned when the template is created successfully.
@@ -216,6 +220,14 @@ paths:
                   value:
                     title: "Internal Server Error"
                     message: "An unexpected error was encountered while processing this request. Please contact MoEngage Team"
+    x-mint:
+        content: |
+          ### FAQs
+          <AccordionGroup>
+            <Accordion title="Can I create multiple templates with the same name?">
+              Yes, you can create multiple templates with the same name, provided they have different versions.
+            </Accordion>
+          </AccordionGroup>
 
     put:
       tags:
