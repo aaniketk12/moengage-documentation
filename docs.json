@@ -518,6 +518,7 @@
           {
             "group": "SDK Integration",
             "pages": [
+              "web-personalization-v2-1",
               "web-personalization-v2"
             ]
           }
