@@ -1,4 +1,33 @@
 ---
-title: 'Framework Initialization'
+title: "Framework Initialization"
+description: "Learn how to initialize the MoEngage Plugin for Capacitor/Ionic applications."
 ---
 
+# Initialize Plugin
+
+Initialize the MoEngage Plugin by calling **`MoECapacitorCore.initialize({ appId: "YOUR_WORKSPACE_ID", initConfig: initConfig });`**. 
+
+In the case of Ionic-React, initialize the plugin in the `useIonViewWillEnter()` callback. For Ionic-Angular, initialize the plugin in `ngOnInit()`.
+
+For more information, read [Ionic React Lifecycle](https://ionicframework.com/docs/react/lifecycle).
+
+## iOS
+
+Starting from version 5.x.x of `capacitor-moengage-core`, the default tracking for the custom boolean attribute changed from `double` to `bool`. To configure this, use `MoEAnalyticsConfig` and pass `true` to track the boolean as a double or `false` to track it as a boolean.
+
+<CodeGroup>
+```typescript Typescript
+import { MoECapacitorCore, MoEAnalyticsConfig, MoEInitConfig } from 'capacitor-moengage-core'
+      
+const analyticsConfig: MoEAnalyticsConfig = { shouldTrackUserAttributeBooleanAsNumber: true };
+const initConfig: MoEInitConfig = { analyticsConfig: analyticsConfig };
+
+MoECapacitorCore.initialize({ appId: "YOUR_WORKSPACE_ID", initConfig: initConfig });
+```
+</CodeGroup>
+
+Refer to the [documentation](https://developers.moengage.com/hc/en-us/articles/4417450742548-Tracking-User-Attributes) for more info.
+
+<Warning>
+Make sure you are setting the Push/InApp callback listeners before calling the **`initialize({ appId: "YOUR_WORKSPACE_ID", initConfig: initConfig })`** method.
+</Warning>
