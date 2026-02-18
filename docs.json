@@ -528,7 +528,25 @@
           {
             "group": "Capacitor SDK",
             "pages": [
-              "untitled-page"
+              "framework-dependency",
+              "android-sdk-installation",
+              "i-os-sdk-installation",
+              "framework-initialization",
+              "android-sdk-initialization",
+              "i-os-sdk-initialization",
+              "delete-user-from-mo-engage-server",
+              "enable-advertising-identifier-tracking",
+              "install-update-differentiation",
+              "tracking-user-attributes",
+              "tracking-events",
+              "android-notification-runtime-permissions",
+              "android-push-configuration",
+              "i-os-push-configuration",
+              "push-callback",
+              "location-triggered",
+              "in-app-nativ",
+              "troubleshooting-and-faqs-capacitor",
+              "capacitor-sample-app"
             ]
           }
         ]
