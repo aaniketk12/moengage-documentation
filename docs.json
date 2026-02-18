@@ -522,7 +522,12 @@
               "web-personalization-v2",
               "content-security-policy-and-impact-on-personalize",
               "offerings-events-tracking",
-              "personalize-api-experience-events-tracking",
+              "personalize-api-experience-events-tracking"
+            ]
+          },
+          {
+            "group": "Capacitor SDK",
+            "pages": [
               "untitled-page"
             ]
           }
