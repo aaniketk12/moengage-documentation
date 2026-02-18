@@ -520,7 +520,8 @@
             "pages": [
               "web-personalization-v2-1",
               "web-personalization-v2",
-              "content-security-policy-and-impact-on-personalize"
+              "content-security-policy-and-impact-on-personalize",
+              "offerings-events-tracking"
             ]
           }
         ]
