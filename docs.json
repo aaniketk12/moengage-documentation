@@ -516,7 +516,7 @@
         "tab": "SDK Docs",
         "groups": [
           {
-            "group": "SDK Integration",
+            "group": "Personalize SDK",
             "pages": [
               "web-personalization-v2-1",
               "web-personalization-v2",
@@ -547,6 +547,28 @@
               "in-app-nativ",
               "troubleshooting-and-faqs-capacitor",
               "capacitor-sample-app"
+            ]
+          },
+          {
+            "group": "Unity SDK",
+            "pages": [
+              "sdk-installation",
+              "sdk-initialization",
+              "android-sdk-initialization-1",
+              "i-os-sdk-initialization-1",
+              "delete-user-from-mo-engage-server-1",
+              "enable-advertising-identifier-tracking-1",
+              "install-update-differentiation-1",
+              "tracking-user-attributes-1",
+              "tracking-events-1",
+              "android-push-configuration-1",
+              "android-notification-runtime-permissions-1",
+              "i-os-push-configuration-1",
+              "push-callback-1",
+              "configuring-push-templates",
+              "location-triggered-1",
+              "in-app-nativ-1",
+              "compliance"
             ]
           }
         ]
