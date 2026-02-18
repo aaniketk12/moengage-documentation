@@ -1,0 +1,43 @@
+---
+title: "Self Handled Personalize API experiences"
+description: "Learn how to fetch and implement self-handled personalization experiences using the MoEngage Web SDK."
+---
+
+# Overview
+
+MoEngage's Self-handled experience gives you the flexibility of creating Personalize API Campaigns on the MoEngage Platform and displaying the experience anywhere on the website. It allows you to fetch the experience's data using the SDK which you can use to personalize the user experience on the website. 
+
+# Implementing Self Handled Experiences
+
+## Pre-requisites
+
+### SDK installation
+
+1. Refer to [this article](https://developers.moengage.com/hc/en-us/articles/360060713252-Web-SDK-Integration) to integrate the Web SDK on your website.
+2. Refer to [this article](https://developers.moengage.com/hc/en-us/articles/10645116433812-Web-Personalization-V2) to integrate the Personalize SDK on your website.
+
+### Creating Personalize API experience
+
+Refer to [this article](https://help.moengage.com/hc/en-us/articles/24644175705236-Create-Server-side-Personalization-Experience) to create a Personalize API experience. 
+
+## Fetching Personalize API experiences
+
+Use the below SDK method to fetch the experiences and build your own UI using the result.
+
+<CodeGroup>
+```javascript JavaScript
+Moengage.personalize.fetchExperiences(["experienceKey1", "experienceKey2"], { "category": "electronics" })
+  .then((result) => {
+    // Process the 'result' containing the Response payload
+    console.log(result);
+  });
+```
+</CodeGroup>
+
+| Parameter | Description |
+| :--- | :--- |
+| `fetchExperiences()` | The Web SDK method that fetches Personalize API experiences based on keys and custom attributes. |
+| `experienceKeys` | **Optional.** A list of strings. If omitted, the SDK returns: <br/>1. **Logged in User**: Experiences where the user is in the target audience. <br/>2. **Anonymous user**: Experiences targeted for **All Users**. <br/><br/>Example: `["home-page-banner", "cart-checkout-offers"]` |
+| `customAttributes` | **Optional.** A JSON object of Key-Value pairs used to define a target audience. <br/><br/>Example: `{"locale":"en"}`. Passing this returns experiences matching that specific attribute. |
+
+[Placeholder_Content_Block]

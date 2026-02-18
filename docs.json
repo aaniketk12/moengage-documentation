@@ -521,7 +521,9 @@
               "web-personalization-v2-1",
               "web-personalization-v2",
               "content-security-policy-and-impact-on-personalize",
-              "offerings-events-tracking"
+              "offerings-events-tracking",
+              "personalize-api-experience-events-tracking",
+              "untitled-page"
             ]
           }
         ]
