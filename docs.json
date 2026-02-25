@@ -30,6 +30,20 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Support",
+          "icon": "headset",
+          "href": "https://help.moengage.com/hc/en-us"
+        },
+        {
+          "anchor": "Blog",
+          "icon": "newspaper",
+          "href": "https://www.moengage.com/blog"
+        }
+      ]
+    },
     "languages": [
       {
         "language": "en",
@@ -69,7 +83,7 @@
                           "source": "/api-reference/osm-templates.yaml",
                           "directory": "api-reference"
                         }
-                      },                            
+                      },
                       {
                         "group": "Custom SMS Templates",
                         "openapi": {
@@ -86,10 +100,10 @@
                       },
                       {
                         "group": "Custom Push Templates",
-                        "openapi": {
-                          "source": "/api-reference/push-templates.yaml",
-                          "directory": "api-reference"
-                        }
+                        "openapi": "/api-reference/push_templates/push-templates.yaml",
+                        "pages": [
+                          "api-reference/push_templates/push_templates_overview"
+                        ]
                       },
                       {
                         "group": "Custom Content Blocks",
@@ -125,17 +139,20 @@
               },
               {
                 "group": "Push API",
-                "openapi": {
-                  "source": "/api-reference/push.yaml",
-                  "directory": "api-reference"
-                }
+                "openapi": "/api-reference/push/push.yaml",
+                "pages": [
+                  "api-reference/push/push_overview",
+                  "POST /transaction/sendpush"
+                ]
               },
               {
-                "group": "Cards APIs",
-                "openapi": {
-                  "source": "/api-reference/cards.yaml",
-                  "directory": "api-reference"
-                }
+                "group": "Cards",
+                "openapi": "/api-reference/cards/cards.yaml",
+                "pages": [
+                  "api-reference/cards/cards_overview",
+                  "POST /cards/fetch",
+                  "DELETE /cards/delete"
+                ]
               },
               {
                 "group": "Data APIs",
@@ -178,11 +195,14 @@
                 }
               },
               {
-                "group": "Live Activities API",
-                "openapi": {
-                  "source": "/api-reference/live-activities.yaml",
-                  "directory": "api-reference"
-                }
+                "group": "Live Activities",
+                "openapi": "/api-reference/live-activities/live-activities.yaml",
+                "pages": [
+                  "api-reference/live-activities/live-activities-overview",
+                  "POST /live-activity/broadcast/start",
+                  "POST /live-activity/broadcast/update",
+                  "POST /live-activity/broadcast/end"
+                ]
               },
               {
                 "group": "Custom Segments API",
@@ -239,6 +259,194 @@
                   "source": "/api-reference/business-events.yaml",
                   "directory": "api-reference"
                 }
+              }
+            ]
+          },
+          {
+            "tab": "Developer Guide",
+            "groups": [
+              {
+                "group": "Web SDK",
+                "pages": [
+                  {
+                    "group": "Web SDK Overview",
+                    "pages": [
+                      "web-sdk-overview",
+                      "Web-SDK-Browser-Compatibility-Matrix"
+                    ]
+                  },
+                  {
+                    "group": "Web SDK Integration",
+                    "pages": [
+                      {
+                        "group": "Basic Integration",
+                        "pages": [
+                          "Web-SDK-Integration"
+                        ]
+                      },
+                      {
+                        "group": "Advanced Integration",
+                        "pages": [
+                          "content-security-policy-csp-nonce-support",
+                          "Debugging-mode",
+                          "cookies-used-by-web-sdk",
+                          "web-sdk-lifecycle-callbacks",
+                          "custom-proxy-domain-web",
+                          "bot-traffic-blocking",
+                          "web-sdk-opt-out"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Data Tracking",
+                    "pages": [
+                      "setting-unique-id-for-sdk-versions-below-2-52-2",
+                      "web-sdk-data-tracking-introduction",
+                      "web-sdk-user-attributes-tracking",
+                      "web-sdk-events-tracking",
+                      "configure-data-opt-out-in-web-sdk"
+                    ]
+                  },
+                  {
+                    "group": "Web Push",
+                    "pages": [
+                      "safari-web-push-for-i-os-and-i-pad-os",
+                      "web-push-overview",
+                      "configure-and-integrate-web-push",
+                      "configure-self-handled-opt-in",
+                      "opted-out-users"
+                    ]
+                  },
+                  {
+                    "group": "Onsite Messaging",
+                    "pages": [
+                      "configure-and-integrate-on-site-messaging",
+                      "self-handled-on-site-messaging"
+                    ]
+                  },
+                  {
+                    "group": "Web Personalization",
+                    "pages": [
+                      "configure-and-integrate-web-personalization"
+                    ]
+                  },
+                  {
+                    "group": "Cards",
+                    "pages": [
+                      "cards",
+                      "self-handled-cards"
+                    ]
+                  },
+                  {
+                    "group": "Integration Validation",
+                    "pages": [
+                      "web-push-notifications-integration-validation"
+                    ]
+                  },
+                  {
+                    "group": "Other Supported Web SDK Integration",
+                    "pages": [
+                      "user-login-in-amp-older-process",
+                      "web-view-web-sdk-support",
+                      "sdk-support-for-browser-extensions",
+                      "google-tag-manager-gtm-templates",
+                      "smart-tv-integration",
+                      "single-page-app-spa-support",
+                      "integrating-with-other-web-frameworks",
+                      "configure-and-integrate-amp-event-analytics",
+                      "configure-and-integrate-amp-web-push"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Release Notes",
+                "pages": [
+                  {
+                    "group": "Expo React Native SDK",
+                    "pages": [
+                      "changelog"
+                    ]
+                  },
+                  {
+                    "group": "iOS SDK",
+                    "pages": [
+                      "2026",
+                      "2025",
+                      "2024",
+                      "2023-and-older"
+                    ]
+                  },
+                  {
+                    "group": "Android SDK",
+                    "pages": [
+                      "2026-1",
+                      "2025-1",
+                      "2024-1",
+                      "2023-and-older-1"
+                    ]
+                  },
+                  {
+                    "group": "Web SDK",
+                    "pages": [
+                      "changelog-1"
+                    ]
+                  },
+                  {
+                    "group": "React Native SDK",
+                    "pages": [
+                      "changelog-5"
+                    ]
+                  },
+                  {
+                    "group": "Flutter SDK",
+                    "pages": [
+                      "changelog-6"
+                    ]
+                  },
+                  {
+                    "group": "Cordova SDK",
+                    "pages": [
+                      "changelog-4"
+                    ]
+                  },
+                  {
+                    "group": "Unity SDK",
+                    "pages": [
+                      "changelog-3"
+                    ]
+                  },
+                  {
+                    "group": "Capacitor SDK",
+                    "pages": [
+                      "changelog-2"
+                    ]
+                  },
+                  {
+                    "group": "Segment Integration",
+                    "pages": [
+                      "i-os-swift-changelog",
+                      "android-kotlin-sdk-changelog",
+                      "i-os-sdk-changelog",
+                      "android-sdk-changelog",
+                      "react-native-plugin-changelog"
+                    ]
+                  },
+                  {
+                    "group": "mParticle Integration",
+                    "pages": [
+                      "i-os-kit-changelog",
+                      "android-kit-changelog"
+                    ]
+                  },
+                  {
+                    "group": "Subscribe to MoEngage SDK Releases",
+                    "pages": [
+                      "subscribe-to-mo-engage-sdk-releases"
+                    ]
+                  }
+                ]
               }
             ]
           }
@@ -299,10 +507,10 @@
                       },
                       {
                         "group": "カスタムプッシュテンプレート",
-                        "openapi": {
-                          "source": "/api-reference/push-templates.yaml",
-                          "directory": "api-reference"
-                        }
+                        "openapi": "/api-reference/push_templates/push-templates.yaml",
+                        "pages": [
+                          "api-reference/push_templates/push_templates_overview"
+                        ]
                       },
                       {
                         "group": "カスタムコンテンツブロック",
@@ -339,14 +547,14 @@
               {
                 "group": "プッシュAPI",
                 "openapi": {
-                  "source": "/api-reference/push.yaml",
+                  "source": "/api-reference/push/push.yaml",
                   "directory": "api-reference"
                 }
               },
               {
                 "group": "カードAPI",
                 "openapi": {
-                  "source": "/api-reference/cards.yaml",
+                  "source": "/api-reference/cards/cards.yaml",
                   "directory": "api-reference"
                 }
               },
@@ -392,10 +600,10 @@
               },
               {
                 "group": "プッシュテンプレートAPI",
-                "openapi": {
-                  "source": "/api-reference/push-templates.yaml",
-                  "directory": "api-reference"
-                }
+                "openapi": "/api-reference/push_templates/push-templates.yaml",
+                "pages": [
+                  "api-reference/push_templates/push_templates_overview"
+                ]
               },
               {
                 "group": "コンテンツブロックAPI",
@@ -407,7 +615,7 @@
               {
                 "group": "ライブアクティビティAPI",
                 "openapi": {
-                  "source": "/api-reference/live-activities.yaml",
+                  "source": "/api-reference/live-activities/live-activities.yaml",
                   "directory": "api-reference"
                 }
               },
@@ -485,21 +693,7 @@
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Support",
-          "href": "https://help.moengage.com/hc/en-us",
-          "icon": "headset"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://www.moengage.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
