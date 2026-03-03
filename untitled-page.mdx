@@ -1,0 +1,19 @@
+---
+title: 'untitled-page'
+---
+
+<CodeGroup>
+```swift Swift
+// In your main AppDelegate.swift - didFinishLaunchingWithOptions
+let sdkConfig = MoEngageSDKConfig(appId: "YOUR_APP_ID", dataCenter: .data_center_01)
+sdkConfig.appGroupId = "group.com.yourcompany.appname" // Your App Group ID
+</CodeGroup>
+
+<CodeGroup>
+// Objective-C
+MoEngageSDKConfig *sdkConfig = [[MoEngageSDKConfig alloc] initWithAppId:@"YOUR_APP_ID" dataCenter:MoEngageDataCenterData_center_01];
+sdkConfig.appGroupID = @"group.com.yourcompany.appname"; 
+
+// Use initializeDefaultInstance for production/dev builds
+[[MoEngage sharedInstance] initializeDefaultInstance:sdkConfig];
+</CodeGroup>

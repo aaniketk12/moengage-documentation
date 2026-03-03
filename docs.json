@@ -271,8 +271,8 @@
                   {
                     "group": "Web SDK Overview",
                     "pages": [
-                      "web-sdk-overview",
-                      "Web-SDK-Browser-Compatibility-Matrix"
+                      "/developer-guide/web-sdk-overview",
+                      "/developer-guide/Web-SDK-Browser-Compatibility-Matrix"
                     ]
                   },
                   {
@@ -281,19 +281,19 @@
                       {
                         "group": "Basic Integration",
                         "pages": [
-                          "Web-SDK-Integration"
+                          "/developer-guide/Web-SDK-Integration"
                         ]
                       },
                       {
                         "group": "Advanced Integration",
                         "pages": [
-                          "content-security-policy-csp-nonce-support",
-                          "Debugging-mode",
-                          "cookies-used-by-web-sdk",
-                          "web-sdk-lifecycle-callbacks",
-                          "custom-proxy-domain-web",
-                          "bot-traffic-blocking",
-                          "web-sdk-opt-out"
+                          "/developer-guide/content-security-policy-csp-nonce-support",
+                          "/developer-guide/Debugging-mode",
+                          "/developer-guide/cookies-used-by-web-sdk",
+                          "/developer-guide/web-sdk-lifecycle-callbacks",
+                          "/developer-guide/custom-proxy-domain-web",
+                          "/developer-guide/bot-traffic-blocking",
+                          "/developer-guide/web-sdk-opt-out"
                         ]
                       }
                     ]
@@ -301,63 +301,64 @@
                   {
                     "group": "Data Tracking",
                     "pages": [
-                      "setting-unique-id-for-sdk-versions-below-2-52-2",
-                      "web-sdk-data-tracking-introduction",
-                      "web-sdk-user-attributes-tracking",
-                      "web-sdk-events-tracking",
-                      "configure-data-opt-out-in-web-sdk"
+                      "/developer-guide/setting-unique-id-for-sdk-versions-below-2-52-2",
+                      "/developer-guide/web-sdk-data-tracking-introduction",
+                      "/developer-guide/web-sdk-user-attributes-tracking",
+                      "/developer-guide/web-sdk-events-tracking",
+                      "/developer-guide/configure-data-opt-out-in-web-sdk"
                     ]
                   },
                   {
                     "group": "Web Push",
                     "pages": [
-                      "safari-web-push-for-i-os-and-i-pad-os",
-                      "web-push-overview",
-                      "configure-and-integrate-web-push",
-                      "configure-self-handled-opt-in",
-                      "opted-out-users"
+                      "/developer-guide/safari-web-push-for-i-os-and-i-pad-os",
+                      "/developer-guide/web-push-overview",
+                      "/developer-guide/configure-and-integrate-web-push",
+                      "/developer-guide/configure-self-handled-opt-in",
+                      "/developer-guide/opted-out-users"
                     ]
                   },
                   {
                     "group": "Onsite Messaging",
                     "pages": [
-                      "configure-and-integrate-on-site-messaging",
-                      "self-handled-on-site-messaging"
+                      "/developer-guide/configure-and-integrate-on-site-messaging",
+                      "/developer-guide/self-handled-on-site-messaging"
                     ]
                   },
                   {
                     "group": "Web Personalization",
                     "pages": [
-                      "configure-and-integrate-web-personalization"
+                      "/developer-guide/configure-and-integrate-web-personalization"
                     ]
                   },
                   {
                     "group": "Cards",
                     "pages": [
-                      "cards",
-                      "self-handled-cards"
+                      "/developer-guide/cards",
+                      "/developer-guide/self-handled-cards"
                     ]
                   },
                   {
                     "group": "Integration Validation",
                     "pages": [
-                      "web-push-notifications-integration-validation"
+                      "/developer-guide/web-push-notifications-integration-validation"
                     ]
                   },
                   {
                     "group": "Other Supported Web SDK Integration",
                     "pages": [
-                      "user-login-in-amp-older-process",
-                      "web-view-web-sdk-support",
-                      "sdk-support-for-browser-extensions",
-                      "google-tag-manager-gtm-templates",
-                      "smart-tv-integration",
-                      "single-page-app-spa-support",
-                      "integrating-with-other-web-frameworks",
-                      "configure-and-integrate-amp-event-analytics",
-                      "configure-and-integrate-amp-web-push"
+                      "/developer-guide/user-login-in-amp-older-process",
+                      "/developer-guide/web-view-web-sdk-support",
+                      "/developer-guide/sdk-support-for-browser-extensions",
+                      "/developer-guide/google-tag-manager-gtm-templates",
+                      "/developer-guide/smart-tv-integration",
+                      "/developer-guide/single-page-app-spa-support",
+                      "/developer-guide/integrating-with-other-web-frameworks",
+                      "/developer-guide/configure-and-integrate-amp-event-analytics",
+                      "/developer-guide/configure-and-integrate-amp-web-push"
                     ]
-                  }
+                  },
+                  "untitled-page"
                 ]
               },
               {
