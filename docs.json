@@ -738,5 +738,13 @@
     "metatags": {
       "robots": "noindex"
     }
+  },
+  "components": {
+    "code": {
+      "theme": {
+        "light": "github-light",
+        "dark": "github-dark"
+      }
+    }
   }
 }
