@@ -739,8 +739,8 @@
       "robots": "noindex"
     }
   },
-  "components": {
-    "code": {
+  "styling": {
+    "codeblocks": {
       "theme": {
         "light": "github-light",
         "dark": "github-dark"
