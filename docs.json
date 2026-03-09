@@ -10,6 +10,14 @@
   "appearance": {
     "default": "light"
   },
+  "styling": {
+    "codeblocks": {
+      "theme": {
+        "light": "github-light",
+        "dark": "github-dark"
+      }
+    }
+  },
   "background": {
     "decoration": "gradient",
     "color": {
@@ -737,14 +745,6 @@
   "seo": {
     "metatags": {
       "robots": "noindex"
-    }
-  },
-  "styling": {
-    "codeblocks": {
-      "theme": {
-        "light": "github-light",
-        "dark": "github-dark"
-      }
     }
   }
 }
