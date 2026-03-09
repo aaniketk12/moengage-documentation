@@ -744,13 +744,7 @@
       "theme": {
         "light": "github-light",
         "dark": "github-dark"
-      },
-    "languages": [
-        "objc",
-        "objectivec",
-        "xml",
-        "swift"
-      ]
+      }
     }
   }
 }
