@@ -16,7 +16,7 @@
         "light": "github-light",
         "dark": "github-dark"
       },
-      "languages":{
+      "languages":[
         xml,
         objective-c,
         java,
@@ -26,7 +26,7 @@
         groovy,
         gradle,
         yaml
-      },
+      ]
     }
   },
   "background": {
