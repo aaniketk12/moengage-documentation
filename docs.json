@@ -15,7 +15,18 @@
       "theme": {
         "light": "github-light",
         "dark": "github-dark"
-      }
+      },
+      "languages":{
+        xml,
+        objective-c,
+        java,
+        kotlin,
+        swift,
+        html,
+        groovy,
+        gradle,
+        yaml
+      },
     }
   },
   "background": {
