@@ -17,15 +17,15 @@
         "dark": "github-dark"
       },
       "languages":[
-        xml,
-        objective-c,
-        java,
-        kotlin,
-        swift,
-        html,
-        groovy,
-        gradle,
-        yaml
+        "xml",
+        "objective-c",
+        "java",
+        "kotlin",
+        "swift",
+        "html",
+        "groovy",
+        "gradle",
+        "yaml"
       ]
     }
   },
